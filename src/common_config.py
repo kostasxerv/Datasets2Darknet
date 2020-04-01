@@ -10,8 +10,8 @@ import matplotlib.patches as patches
 from PIL import Image
 
 # TO CHANGE
-CLASS_NUMBER = 10 
-classes_names = ["PROHIBITORY", "DANGER", "MANDATORY", "INFORMATION", "STOP", "YIELD", "NOENTRY", "TL-RED", "TL-AMBER", "TL-GREEN", "FALSE_NEGATIVES"]
+CLASS_NUMBER = 3 
+classes_names = ["TL-RED", "TL-AMBER", "TL-GREEN"]
 
 # No need to change
 OTHER_CLASS = CLASS_NUMBER + 1 # Class that will contain all the negative samples.
