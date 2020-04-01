@@ -15,8 +15,8 @@ from common_config import *
 
 
 # Datasets to use
-DATASETS = [LISATL, MASTIF, RTSDD]
-DATASETS_NAMES = ["LISATL", "MASTIF", "RTSDD"]
+DATASETS = [LISATL]
+DATASETS_NAMES = ["LISATL"]
 
 
 # Main method.
