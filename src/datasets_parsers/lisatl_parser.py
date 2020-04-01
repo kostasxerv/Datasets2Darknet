@@ -5,7 +5,8 @@ import os.path
 from common_config import *
 
 # TO CHANGE
-INPUT_PATH = "/media/angeliton/Backup1/DBs/Traffic Light/LISATL/"
+INPUT_PATH = "/content/mydrive/datasets/lisa-traffic-light/Annotations/Annotations/"
+IMAGES_PATH = "/content/mydrive/datasets/lisa-traffic-light/dayTrain/dayTrain/"
 RESIZE_PERCENTAGE = 0.45
 DB_PREFIX = 'lisatl-'
 
@@ -15,9 +16,9 @@ ANNOTATIONS_FILENAME = "frameAnnotationsBOX.csv"
 
 def initialize_traffic_sign_classes():
     traffic_sign_classes.clear()
-    traffic_sign_classes["7-tlred"] = ["stop", "stopLeft"]
-    traffic_sign_classes["8-tlamber"] = ["warning", "warningLeft"] 
-    traffic_sign_classes["9-tlgreen"] = ["go", "goForward", "goLeft"]
+    traffic_sign_classes["0-red"] = ["stop", "stopLeft"]
+    traffic_sign_classes["1-amber"] = ["warning", "warningLeft"] 
+    traffic_sign_classes["2-green"] = ["go", "goForward", "goLeft"]
     traffic_sign_classes[str(OTHER_CLASS) + "-" + OTHER_CLASS_NAME] = []
 
 
@@ -43,10 +44,10 @@ def calculate_darknet_format(input_img,row):
     return parse_darknet_format(object_class_adjusted, image_width, image_height, left_x, bottom_y, right_x, top_y)
 
 
-def add_file_to_dir(row, subfolder_path, img_labels):
+def add_file_to_dir(row, subsubfolder_name, img_labels):
     filename = row[0].split("/")[1]
-    file_path = subfolder_path + "/frames/" + filename
-
+    file_path = IMAGES_PATH + subsubfolder_name + "/frames/" + filename
+    print(file_path)
     if os.path.isfile(file_path):
         # If it is the first label for that img add it
         if filename not in img_labels.keys():  
@@ -91,7 +92,7 @@ def read_dataset(output_train_text_path, output_test_text_path, output_train_dir
         for subsubfolder_name in os.listdir(subfolder_path):
             subsubfolder_path = subfolder_path + "/" + subsubfolder_name
             if os.path.isdir(subsubfolder_path):
-                # print("Fetching data from " + subsubfolder_name + "...")
+                print("Fetching data from " + subsubfolder_name + "...")
                 subfolder_annotation_filename = subsubfolder_path + "/" + ANNOTATIONS_FILENAME
 
                 # Check if annotation file exists
@@ -101,7 +102,7 @@ def read_dataset(output_train_text_path, output_test_text_path, output_train_dir
                     for line in subfolder_annotation_file.readlines()[1:]: # Remove header
                         # print("\t" + line)
                         row = line.split(";")
-                        add_file_to_dir(row, subsubfolder_path, img_labels)
+                        add_file_to_dir(row, subsubfolder_name, img_labels)
                     subfolder_annotation_file.close()                
                 else:
                     print("Subfolder " + subfolder_annotation_filename + " not found")
