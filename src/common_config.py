@@ -146,18 +146,13 @@ def get_object_label(obj_class):
 # Returns a string with the darknet label for the received object_class, 
 # image dimensions and bounding box limits. 
 def parse_darknet_format(object_class, img_width, img_height, left_x, bottom_y, right_x, top_y):
-    object_width = right_x - left_x
-    object_height = top_y - bottom_y
-    object_mid_x = (left_x + right_x) / 2.0
-    object_mid_y = (bottom_y + top_y) / 2.0
-
-    object_width_rel = object_width / img_width
-    object_height_rel = object_height / img_height
-    object_mid_x_rel = object_mid_x / img_width
-    object_mid_y_rel = object_mid_y / img_height
+    xmin = left_x / img_width
+    ymin = bottom_y / img_height
+    xmax = right_x / img_width
+    ymax = top_y / img_height
 
     dark_net_label = "{} {} {} {} {}". \
-        format(object_class, object_mid_x_rel, object_mid_y_rel, object_width_rel, object_height_rel)
+        format(object_class, xmin, ymin, xmax, ymax)
 
     return dark_net_label
 
