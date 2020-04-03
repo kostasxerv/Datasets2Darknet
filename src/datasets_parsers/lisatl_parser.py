@@ -5,8 +5,8 @@ import os.path
 from common_config import *
 
 # TO CHANGE
-INPUT_PATH = "/content/mydrive/datasets/lisa-traffic-light/Annotations/Annotations/"
-IMAGES_PATH = "/content/mydrive/datasets/lisa-traffic-light/dayTrain/dayTrain/"
+INPUT_PATH = "C:\\Users\\kosta\\dev\\lisa_yolo\\lisa-traffic-light-dataset\\Annotations\\Annotations\\"
+IMAGES_PATH = "C:\\Users\\kosta\\dev\\lisa_yolo\\lisa-traffic-light-dataset\\dayTrain\\dayTrain\\"
 RESIZE_PERCENTAGE = 0.45
 DB_PREFIX = 'lisatl-'
 
