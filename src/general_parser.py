@@ -4,13 +4,8 @@
 # The program will put those datasets together in a general one.
 import click
 
-import datasets_parsers.gtsdb_parser as GTSDB
-import datasets_parsers.btsdb_parser as BTSDB
 import datasets_parsers.lisats_parser as LISATS
 import datasets_parsers.lisatl_parser as LISATL
-import datasets_parsers.mastif_parser as MASTIF
-import datasets_parsers.rtsdc_parser as RTSDC
-import datasets_parsers.rtsdd_parser as RTSDD
 from common_config import *
 
 
