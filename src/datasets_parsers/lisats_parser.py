@@ -7,20 +7,22 @@ import csv
 from common_config import *
 
 # TO CHANGE
-LISATS_ROOT_PATH = "/media/angeliton/Backup1/DBs/Road Signs/LISATS/"
+LISATS_ROOT_PATH = "C://Users//kosta//dev//datasets//signDatabasePublicFramesOnly//"
 RESIZE_PERCENTAGE = 0.8
 DB_PREFIX = 'lisats-'
 
 
 COMBINED_ANNOTATIONS_FILE_PATH = LISATS_ROOT_PATH + "allAnnotations.csv"
-INPUT_PATH = LISATS_ROOT_PATH + "input-img/"
-BACKGROUND_IMG_PATH = LISATS_ROOT_PATH + "input-img-bg/"
 
 
 def initialize_traffic_sign_classes():
     traffic_sign_classes.clear()
-    traffic_sign_classes["4-stop"] = ["stop"]
-    traffic_sign_classes["5-yield"] = ["yield"]
+    traffic_sign_classes["0-stop"] = ["stop"]
+    traffic_sign_classes["1-pedestrianCrossing"] = ["pedestrianCrossing"]
+    traffic_sign_classes["2-signalAhead"] = ["signalAhead"]
+    traffic_sign_classes["3-speedLimit35"] = ["speedLimit35"]
+    traffic_sign_classes["4-keepright"] = ["keepRight"]
+
     traffic_sign_classes[str(OTHER_CLASS) + "-" + OTHER_CLASS_NAME] = []
 
 
@@ -72,7 +74,7 @@ def read_dataset(output_train_text_path, output_test_text_path, output_train_dir
     # WRITE ALL THE DATA IN A DICTIONARY (TO GROUP LABELS ON SAME IMG)
     for row in gt_reader:
         filename = row[0].split("/")[-1][:-4]
-        file_path = INPUT_PATH + row[0]
+        file_path = LISATS_ROOT_PATH + row[0]
 
         if os.path.isfile(file_path):
             input_img = read_img_plt(file_path)
